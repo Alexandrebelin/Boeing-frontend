@@ -5,9 +5,30 @@ import media1 from "../assets/media/media-1.jpeg";
 import media2 from "../assets/media/media-2.jpeg";
 import media3 from "../assets/media/media-3.jpeg";
 import media4 from "../assets/media/media-4.jpeg";
+import ButtonCarousel from "./ButtonCarousel";
 
 const Carroussel = () => {
-  const pictures = [media1, media2, media3, media4];
+  const pictures = [
+    {
+      media: media1,
+      title:
+        "Boeing répond à l'approbation de l'AESA pour le retour en service du 737 MAX",
+    },
+    {
+      media: media2,
+      title:
+        "David Calhoun prend ses fonctions de Président-directeur général de Boeing",
+    },
+    {
+      media: media3,
+      title:
+        "Boeing inaugure une nouvelle usine de fabrication de pièces d’avion à Sheffield",
+    },
+    {
+      media: media4,
+      title: "Le nouveau Boeing 777X effectue son premier vol avec succès",
+    },
+  ];
   const responsive = {
     desktop: {
       breakpoint: {
@@ -38,27 +59,24 @@ const Carroussel = () => {
     <div>
       <Carousel
         className="slider"
-        additionalTransfrom={0}
+        swipeable={true}
         arrows
         autoPlaySpeed={3000}
-        centerMode={false}
-        dotListClass=""
         draggable
         focusOnSelect={false}
         infinite
-        itemClass=""
-        keyBoardControl
+        keyBoardControl={true}
         minimumTouchDrag={80}
-        renderButtonGroupOutside={false}
-        renderDotsOutside={false}
         responsive={responsive}
-        showDots={false}
-        sliderClass=""
         slidesToSlide={1}
-        swipeable
       >
-        {pictures.map((picture) => {
-          return <img src={picture} alt="" className="image" />;
+        {pictures.map((picture, index) => {
+          return (
+            <div key={index}>
+              <img src={picture.media} alt="image caroussel" />
+              <ButtonCarousel title={picture.title} />
+            </div>
+          );
         })}
       </Carousel>
     </div>
